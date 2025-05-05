@@ -1,0 +1,159 @@
+<!-- Welcome Banner -->
+<div class="bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-xl p-6 text-white mb-6">
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-bold">Bem-vindo de volta, Admin!</h1>
+        <p class="opacity-90">Aqui está o resumo das atividades da sua farmácia</p>
+      </div>
+      <div class="hidden md:block">
+        <i class="fas fa-pills text-5xl opacity-20"></i>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <!-- Total Orders -->
+    <div class="dashboard-card bg-white rounded-xl p-6">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-gray-500">Total de Pedidos</p>
+          <h3 class="text-2xl font-bold mt-2">1,248</h3>
+          <p class="text-sm text-green-500 mt-1">
+            <i class="fas fa-arrow-up"></i> 12% este mês
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
+          <i class="fas fa-shopping-cart text-blue-600"></i>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Monthly Revenue -->
+    <div class="dashboard-card bg-white rounded-xl p-6">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-gray-500">Faturamento do Mês</p>
+          <h3 class="text-2xl font-bold mt-2">R$ 48.760</h3>
+          <p class="text-sm text-green-500 mt-1">
+            <i class="fas fa-arrow-up"></i> 8% este mês
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+          <i class="fas fa-dollar-sign text-green-600"></i>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Stock Items -->
+    <div class="dashboard-card bg-white rounded-xl p-6">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-gray-500">Insumos em Estoque</p>
+          <h3 class="text-2xl font-bold mt-2">1.024</h3>
+          <p class="text-sm text-red-500 mt-1">
+            <i class="fas fa-exclamation-circle"></i> 12 com estoque baixo
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
+          <i class="fas fa-boxes text-purple-600"></i>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Low Stock Alert -->
+    <div class="dashboard-card alert-low-stock bg-white rounded-xl p-6 border border-red-300">
+      <div class="flex justify-between">
+        <div>
+          <p class="text-gray-500">Alertas de Estoque</p>
+          <h3 class="text-2xl font-bold mt-2 text-red-600">12 Itens</h3>
+          <p class="text-sm text-red-500 mt-1">
+            <i class="fas fa-exclamation-triangle"></i> Necessário repor
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
+          <i class="fas fa-exclamation text-red-600"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Charts Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <!-- Order Status Chart -->
+    <div class="dashboard-card bg-white rounded-xl p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-semibold text-gray-800">Status dos Pedidos</h3>
+        <select class="text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+          <option>Este Mês</option>
+          <option>Últimos 3 Meses</option>
+          <option>Este Ano</option>
+        </select>
+      </div>
+      <div class="h-64">
+        <canvas id="orderStatusChart"></canvas>
+      </div>
+    </div>
+  
+    <!-- Stock Levels -->
+    <div class="dashboard-card bg-white rounded-xl p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-semibold text-gray-800">Níveis de Estoque</h3>
+        <select class="text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+          <option>Todos</option>
+          <option>Medicamentos</option>
+          <option>Insumos</option>
+        </select>
+      </div>
+      <div class="h-64">
+        <canvas id="stockLevelsChart"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Low Stock Items Table -->
+  <div class="dashboard-card bg-white rounded-xl overflow-hidden">
+    <div class="p-6">
+      <h3 class="font-semibold text-gray-800 mb-4">Itens com Estoque Baixo</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estoque Atual</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estoque Mínimo</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ação</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 h-10 w-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-pills text-red-600"></i>
+                  </div>
+                  <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">Paracetamol 500mg</div>
+                    <div class="text-sm text-gray-500">Ref. PC-500</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Analgésico</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Crítico</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Repor</a>
+              </td>
+            </tr>
+            <!-- Adicione mais linhas conforme necessário -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
