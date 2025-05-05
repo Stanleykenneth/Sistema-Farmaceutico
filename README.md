@@ -30,7 +30,7 @@
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seuusuario/farmasys.git
+git clone https://github.com/Stanleykenneth/Sistema-Farmaceutico.git
 cd farmasys
 ```
 
@@ -121,4 +121,5 @@ farmasys/
 ## 👨‍💻 Autor
 
 Desenvolvido por **Kenneth Stanley Neves dos Santos**  
-📧 kenneth@email.com
+📧 kstanley_bass@hotmail.com
+📱 11 98496.1691
