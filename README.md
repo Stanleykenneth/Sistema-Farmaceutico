@@ -106,6 +106,9 @@ farmasys/
 ### Lista de Pacientes
 
 > Imagem ilustrativa conforme protótipo ou screenshot do sistema.
+![Tela de login](image.png)
+![Tela de Dashboard](image-1.png)
+![Tela de Pacientes](image-2.png)
 
 ---
 
