@@ -1,0 +1,58 @@
+<!-- partials/medicos_modal.html -->
+<div id="doctorModal" class="fixed inset-0 overflow-y-auto hidden">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div class="modal-box">
+        <div class="modal-content">
+          <div class="modal-icon">
+            <i class="fas fa-user-md text-blue-600"></i>
+          </div>
+          <div class="modal-header">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Cadastrar Novo Médico</h3>
+          </div>
+          <div class="mt-2">
+            <form id="doctorForm">
+              <div class="grid grid-cols-1 gap-y-4 gap-x-6 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                  <label for="first-name" class="block text-sm font-medium text-gray-700">Nome</label>
+                  <input type="text" name="first-name" id="first-name" class="form-input">
+                </div>
+                <div class="sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Sobrenome</label>
+                  <input type="text" name="last-name" id="last-name" class="form-input">
+                </div>
+                <div class="sm:col-span-4">
+                  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                  <input type="email" name="email" id="email" class="form-input">
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="phone" class="block text-sm font-medium text-gray-700">Telefone</label>
+                  <input type="text" name="phone" id="phone" class="form-input">
+                </div>
+                <div class="sm:col-span-3">
+                  <label for="crm" class="block text-sm font-medium text-gray-700">CRM</label>
+                  <input type="text" name="crm" id="crm" class="form-input">
+                </div>
+                <div class="sm:col-span-3">
+                  <label for="specialty" class="block text-sm font-medium text-gray-700">Especialidade</label>
+                  <select id="specialty" name="specialty" class="form-select">
+                    <option>Cardiologia</option>
+                    <option>Pediatria</option>
+                    <option>Ortopedia</option>
+                    <option>Neurologia</option>
+                    <option>Cirurgia Geral</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-primary">Salvar</button>
+          <button type="button" id="cancelModal" class="btn-secondary">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

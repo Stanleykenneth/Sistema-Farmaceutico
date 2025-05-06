@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmasys - Gestão de Pedidos</title>
+  
+  <!-- Tailwind CSS e Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Arquivo CSS estático -->
+  <link rel="stylesheet" href="{% static 'css/pedidos.css' %}">
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    {% include 'partials/sidebar.html' %}
+
+    <!-- Main Content -->
+    <div class="main-content flex-1 flex flex-col overflow-hidden">
+      <!-- Top Navigation -->
+      {% include 'partials/topnav.html' %}
+
+      <!-- Main Content Area -->
+      <main class="flex-1 overflow-y-auto p-6" x-data="orderManagement()" x-init="init()">
+        {% include 'partials/pedidos_form.html' %}
+        {% include 'partials/pedidos_tabela.html' %}
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="{% static 'js/pedidos.js' %}"></script>
+</body>
+</html>

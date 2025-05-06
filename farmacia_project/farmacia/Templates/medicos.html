@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Farmasys - Gestão de Médicos{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/medicos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="flex h-screen">
+  {% include 'includes/sidebar.html' with active='medicos' %}
+
+  <div class="main-content flex-1 flex flex-col overflow-hidden">
+    {% include 'includes/header.html' with titulo="Gestão de Médicos" %}
+
+    <main class="flex-1 overflow-y-auto p-6">
+      <div class="flex justify-between items-center mb-6">
+        <button id="newDoctorBtn" class="btn-primary">
+          <i class="fas fa-plus mr-2"></i> Cadastrar Médico
+        </button>
+        <div class="flex space-x-2">
+          <button class="btn-secondary">
+            <i class="fas fa-filter mr-2"></i> Filtrar
+          </button>
+          <button class="btn-secondary">
+            <i class="fas fa-download mr-2"></i> Exportar
+          </button>
+        </div>
+      </div>
+
+      {% include 'partials/medicos_tabela.html' %}
+      {% include 'partials/medicos_grafico.html' %}
+    </main>
+  </div>
+</div>
+
+{% include 'partials/medicos_modal.html' %}
+{% endblock %}
+
+{% block script_extra %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/medicos.js' %}"></script>
+{% endblock %}
