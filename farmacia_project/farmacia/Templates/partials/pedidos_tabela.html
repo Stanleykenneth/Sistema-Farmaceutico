@@ -1,8 +1,55 @@
 <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-    <div class="px-6 py-4 border-b border-gray-200">
-      <h2 class="text-lg font-medium text-gray-900">Histórico de Pedidos</h2>
-    </div>
-    <div class="table-container">
-      <!-- A tabela com os dados dos pedidos já está montada no HTML principal -->
+  <div class="px-6 py-4 border-b border-gray-200">
+    <h2 class="text-lg font-medium text-gray-900">Histórico de Pedidos</h2>
+  </div>
+  <div class="table-container">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><a href="?ordering=paciente__nome">Paciente</a></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><a href="?ordering=medico__primeiro_nome">Médico</a></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><a href="?ordering=status">Status</a></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><a href="?ordering=data_pedido">Data</a></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {% for pedido in pedidos %}
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">{{ pedido.paciente.nome }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ pedido.medico }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ pedido.get_status_display }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ pedido.data_pedido|date:"d/m/Y H:i" }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <a href="{% url 'pedido_update' pedido.pk %}" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'pedido_delete' pedido.pk %}" class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="text-center p-4 text-gray-500">Nenhum pedido encontrado.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if is_paginated %}
+  <div class="px-6 py-3">
+    <div class="flex justify-center space-x-1 text-sm">
+      {% if page_obj.has_previous %}
+      <a class="px-2 py-1 border rounded" href="?page={{ page_obj.previous_page_number }}{% if current_ordering %}&ordering={{ current_ordering }}{% endif %}">&laquo;</a>
+      {% endif %}
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <span class="px-2 py-1 border rounded bg-gray-200">{{ num }}</span>
+        {% else %}
+        <a class="px-2 py-1 border rounded" href="?page={{ num }}{% if current_ordering %}&ordering={{ current_ordering }}{% endif %}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <a class="px-2 py-1 border rounded" href="?page={{ page_obj.next_page_number }}{% if current_ordering %}&ordering={{ current_ordering }}{% endif %}">&raquo;</a>
+      {% endif %}
     </div>
   </div>
+  {% endif %}
+</div>

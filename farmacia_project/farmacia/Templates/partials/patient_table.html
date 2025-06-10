@@ -1,78 +1,58 @@
 <div class="bg-gray-100 p-6 rounded-xl">
-    <table class="patient-table">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Telefone</th>
-          <th class="text-center">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div class="patient-row">
-              <div class="patient-avatar">
-                <i class="fas fa-user"></i>
-              </div>
-              <div>
-                <div class="font-semibold text-gray-900">João da Silva</div>
-                <div class="text-sm text-gray-500">joao@email.com</div>
-              </div>
+  <table class="patient-table">
+    <thead>
+      <tr>
+        <th><a href="?ordering=nome">Nome</a></th>
+        <th><a href="?ordering=cpf">CPF</a></th>
+        <th>Telefone</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for paciente in pacientes %}
+      <tr>
+        <td>
+          <div class="patient-row">
+            <div class="patient-avatar">
+              <i class="fas fa-user"></i>
             </div>
-          </td>
-          <td>123.456.789-00</td>
-          <td>(11) 98765-4321</td>
-          <td>
-            <div class="patient-actions">
-              <button class="text-indigo-600 patient-icon-btn"><i class="fas fa-pen-to-square"></i></button>
-              <button class="text-red-500 patient-icon-btn"><i class="fas fa-trash"></i></button>
+            <div>
+              <div class="font-semibold text-gray-900">{{ paciente.nome }}</div>
+              <div class="text-sm text-gray-500">{{ paciente.email }}</div>
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="patient-row">
-              <div class="patient-avatar">
-                <i class="fas fa-user"></i>
-              </div>
-              <div>
-                <div class="font-semibold text-gray-900">Maria Oliveira</div>
-                <div class="text-sm text-gray-500">maria@email.com</div>
-              </div>
-            </div>
-          </td>
-          <td>987.654.321-00</td>
-          <td>(21) 99876-5432</td>
-          <td>
-            <div class="patient-actions">
-              <button class="text-indigo-600 patient-icon-btn"><i class="fas fa-pen-to-square"></i></button>
-              <button class="text-red-500 patient-icon-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="patient-row">
-              <div class="patient-avatar">
-                <i class="fas fa-user"></i>
-              </div>
-              <div>
-                <div class="font-semibold text-gray-900">Carlos Souza</div>
-                <div class="text-sm text-gray-500">carlos@email.com</div>
-              </div>
-            </div>
-          </td>
-          <td>456.789.123-00</td>
-          <td>(31) 98765-1234</td>
-          <td>
-            <div class="patient-actions">
-              <button class="text-indigo-600 patient-icon-btn"><i class="fas fa-pen-to-square"></i></button>
-              <button class="text-red-500 patient-icon-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </td>
+        <td>{{ paciente.cpf }}</td>
+        <td>{{ paciente.telefone }}</td>
+        <td>
+          <div class="patient-actions">
+            <a href="{% url 'paciente_update' paciente.pk %}" class="text-indigo-600 patient-icon-btn"><i class="fas fa-pen-to-square"></i></a>
+            <a href="{% url 'paciente_delete' paciente.pk %}" class="text-red-500 patient-icon-btn"><i class="fas fa-trash"></i></a>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-center p-4 text-gray-500">Nenhum paciente encontrado.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if is_paginated %}
+  <div class="mt-4 flex justify-center space-x-1 text-sm">
+    {% if page_obj.has_previous %}
+    <a class="px-2 py-1 border rounded" href="?page={{ page_obj.previous_page_number }}{% if current_ordering %}&ordering={{ current_ordering }}{% endif %}">&laquo;</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+      <span class="px-2 py-1 border rounded bg-gray-200">{{ num }}</span>
+      {% else %}
+      <a class="px-2 py-1 border rounded" href="?page={{ num }}{% if current_ordering %}&ordering={{ current_ordering }}{% endif %}">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <a class="px-2 py-1 border rounded" href="?page={{ page_obj.next_page_number }}{% if current_ordering %}&ordering={{ current_ordering }}{% endif %}">&raquo;</a>
+    {% endif %}
   </div>
-  
+  {% endif %}
+</div>

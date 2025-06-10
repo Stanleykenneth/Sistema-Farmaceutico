@@ -116,7 +116,7 @@ farmasys/
 
 - [ ] Integração com banco de dados real
 - [ ] Upload real de arquivos para prescriptions
-- [ ] Paginação e ordenação
+- [x] Paginação e ordenação
 - [ ] Validação com Django Forms
 
 ---
