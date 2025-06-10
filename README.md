@@ -120,6 +120,9 @@ farmasys/
 - [ ] Validação com Django Forms
 
 ---
+## 📄 Licença
+
+Distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## 👨‍💻 Autor
 
