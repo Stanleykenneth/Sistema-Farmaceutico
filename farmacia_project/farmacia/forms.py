@@ -14,6 +14,7 @@ class PacienteForm(forms.ModelForm):
             "endereco",
             "telefone",
             "email",
+            "arquivo",
         ]
 
     def clean_cpf(self):
