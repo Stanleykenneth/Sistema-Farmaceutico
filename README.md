@@ -31,7 +31,7 @@
 
 ```bash
 git clone https://github.com/Stanleykenneth/Sistema-Farmaceutico.git
-cd farmasys
+cd Sistema-Farmaceutico
 ```
 
 ### 2. Crie e ative um ambiente virtual
@@ -48,7 +48,7 @@ venv\Scripts\activate   # Windows
 pip install -r requirements.txt
 ```
 
-> Certifique-se de que o `Django` está listado no `requirements.txt`.
+> O arquivo `requirements.txt` já inclui o `Django`.
 
 ### 4. Rode as migrações iniciais
 
