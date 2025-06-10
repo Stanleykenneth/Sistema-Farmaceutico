@@ -8,6 +8,7 @@ class Paciente(models.Model):
     endereco = models.CharField(max_length=255, blank=True)
     telefone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
+    arquivo = models.FileField(upload_to="uploads/pacientes/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
