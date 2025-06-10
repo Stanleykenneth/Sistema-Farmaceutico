@@ -1,0 +1,44 @@
+
+body {
+    font-family: sans-serif;
+    background-color: #f3f4f6; /* gray-100 */
+  }
+  
+  .sidebar {
+    transition: all 0.3s;
+  }
+  
+  .sidebar-collapsed {
+    width: 70px;
+  }
+  
+  .sidebar-expanded {
+    width: 250px;
+  }
+  
+  .main-content {
+    transition: margin-left 0.3s;
+  }
+  
+  .active-menu {
+    background-color: #3b82f6; /* blue-500 */
+    color: white;
+  }
+  
+  .active-menu:hover {
+    background-color: #2563eb; /* blue-600 */
+  }
+  
+  .table-container {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+  }
+  
+  .item-row:hover .remove-item {
+    display: block;
+  }
+  
+  [x-cloak] {
+    display: none !important;
+  }
+  
