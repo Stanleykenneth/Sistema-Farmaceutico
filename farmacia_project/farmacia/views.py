@@ -7,6 +7,8 @@ from django.views.generic import (
     DeleteView,
 )
 
+from .forms import PacienteForm, MedicoForm, PedidoForm
+
 from .models import Paciente, Medico, Pedido
 
 def login_view(request):
@@ -41,14 +43,7 @@ class PacienteCreateView(CreateView):
     """Cadastro de pacientes."""
 
     model = Paciente
-    fields = [
-        "nome",
-        "cpf",
-        "data_nascimento",
-        "endereco",
-        "telefone",
-        "email",
-    ]
+    form_class = PacienteForm
     template_name = "paciente_form.html"
     success_url = reverse_lazy("paciente_list")
 
@@ -57,14 +52,7 @@ class PacienteUpdateView(UpdateView):
     """Edição de pacientes."""
 
     model = Paciente
-    fields = [
-        "nome",
-        "cpf",
-        "data_nascimento",
-        "endereco",
-        "telefone",
-        "email",
-    ]
+    form_class = PacienteForm
     template_name = "paciente_form.html"
     success_url = reverse_lazy("paciente_list")
 
@@ -89,14 +77,7 @@ class MedicoCreateView(CreateView):
     """Cadastro de médicos."""
 
     model = Medico
-    fields = [
-        "primeiro_nome",
-        "ultimo_nome",
-        "email",
-        "telefone",
-        "crm",
-        "especialidade",
-    ]
+    form_class = MedicoForm
     template_name = "medico_form.html"
     success_url = reverse_lazy("medico_list")
 
@@ -105,14 +86,7 @@ class MedicoUpdateView(UpdateView):
     """Edição de médicos."""
 
     model = Medico
-    fields = [
-        "primeiro_nome",
-        "ultimo_nome",
-        "email",
-        "telefone",
-        "crm",
-        "especialidade",
-    ]
+    form_class = MedicoForm
     template_name = "medico_form.html"
     success_url = reverse_lazy("medico_list")
 
@@ -137,7 +111,7 @@ class PedidoCreateView(CreateView):
     """Cadastro de pedidos."""
 
     model = Pedido
-    fields = ["paciente", "medico", "descricao", "status"]
+    form_class = PedidoForm
     template_name = "pedido_form.html"
     success_url = reverse_lazy("pedido_list")
 
@@ -146,7 +120,7 @@ class PedidoUpdateView(UpdateView):
     """Edição de pedidos."""
 
     model = Pedido
-    fields = ["paciente", "medico", "descricao", "status"]
+    form_class = PedidoForm
     template_name = "pedido_form.html"
     success_url = reverse_lazy("pedido_list")
 
